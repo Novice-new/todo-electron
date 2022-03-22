@@ -17,7 +17,7 @@
             v-for="(todo, index) in activeTodos"
             :key="todo._id"
             style="
-              color: #e6a23c;
+              color: #303133;
               font-size: 14px;
               line-height: 20px;
               margin: 5px 0;
@@ -26,11 +26,11 @@
           >{{ index + 1 }}、{{ todo.name }}</div>
         </template>
         <div v-else>任务都完成了，快去创建一个吧</div>
-        <el-button
-          slot="reference"
-          type="text"
-          style="color: #fff; margin-left: 20px; font-size: 16px"
-        >今日待做</el-button>
+        <div slot="reference" style="margin-left: 20px; font-size: 16px">
+          <el-badge :value="activeTodos.length" class="item">
+            <el-button size="small" type="text" style="color:#fff">今日待做</el-button>
+          </el-badge>
+        </div>
       </el-popover>
     </div>
     <div class="right">
@@ -119,14 +119,14 @@ export default {
 .layout-head {
   flex: 0;
   box-sizing: border-box;
-  padding: 0 50px;
+  padding: 10px 50px;
   width: 100%;
-  height: 50px !important;
   background-color: #409eff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   .left {
+    display: flex;
     .el-icon-s-home {
       cursor: pointer;
       color: #fff;
