@@ -1,18 +1,25 @@
 # electron-app
 
-## Project setup
+## 安装依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+### 编译
 ```
 
-### Compiles and minifies for production
+npm run serve
+
+electron 热更新
+npm run electron:server
+```
+
+### 打包
 ```
 npm run build
+
+electron打包
+npm run electron:build
 ```
 
 ### Customize configuration
