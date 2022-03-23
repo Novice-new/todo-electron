@@ -1,9 +1,10 @@
 import axios from "axios";
 import { Message } from "element-ui";
-
+const isProduction = process.env.NODE_ENV === 'production';
+const serverUrl = "http://10.219.108.117:3000/"
 // create an axios instance
 const service = axios.create({
-  baseURL: "http://10.219.108.117:3000/", // url = base url + request url
+  baseURL: isProduction ? serverUrl : "/", // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   // timeout: 5000 // request timeout
 });

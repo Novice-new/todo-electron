@@ -15,6 +15,15 @@ const routes = [
   },
 
   {
+    path: "/register",
+    component: () => import("@/views/register/index"),
+    hidden: true,
+    meta: {
+      auth: false,
+    },
+  },
+
+  {
     path: "/404",
     component: () => import("@/views/404"),
     hidden: true,

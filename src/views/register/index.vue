@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">Register Form</h3>
       </div>
 
       <el-form-item prop="username">
@@ -44,15 +44,14 @@
           style="color: #fff; font-size: 20px; margin-left: 10px"
         ></i>-->
       </el-form-item>
-
       <el-button
-        :loading="loading"
         type="primary"
-        style="width: 100%; margin-bottom: 10px"
-        @click.native.prevent="handleLogin"
-      >Login</el-button>
+        style="width: 100%; margin-bottom: 10px;margin-left:0;"
+        @click.native.prevent="handleRegister"
+      >Register</el-button>
+
       <div class="tips">
-        <el-button type="text" @click="handleRegister">to Register</el-button>
+        <el-button type="text" @click="backToLogin">back to login</el-button>
       </div>
     </el-form>
   </div>
@@ -78,34 +77,16 @@ export default {
       redirect: undefined,
     };
   },
-  watch: {
-    $route: {
-      handler: function (route) {
-        this.redirect = route.query && route.query.redirect;
-      },
-      immediate: true,
-    },
-  },
   methods: {
-    showPwd() {
-      if (this.passwordType === "password") {
-        this.passwordType = "";
-      } else {
-        this.passwordType = "password";
-      }
-      this.$nextTick(() => {
-        this.$refs.password.focus();
-      });
-    },
-    handleLogin() {
+    handleRegister() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
           this.$store
-            .dispatch("user/login", this.loginForm)
+            .dispatch("user/register", this.loginForm)
             .then(() => {
               this.$store.dispatch("todo/shouldUpdate");
-              this.$router.push({ path: this.redirect || "/" });
+              this.$router.push("/");
               this.loading = false;
             })
             .catch((err) => {
@@ -118,9 +99,9 @@ export default {
         }
       });
     },
-    handleRegister(){
-      this.$router.push("/register")
-    }
+    backToLogin() {
+      this.$router.push("/login");
+    },
   },
 };
 </script>

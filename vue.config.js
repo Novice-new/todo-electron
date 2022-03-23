@@ -1,4 +1,5 @@
 const { defineConfig } = require('@vue/cli-service');
+const target = process.env.BASE_URL;
 module.exports = defineConfig({
   transpileDependencies: true,
   pluginOptions: {
@@ -19,6 +20,15 @@ module.exports = defineConfig({
           "createDesktopShortcut": true, // 创建桌面图标
           "shortcutName": "Todo List", // 图标名称
         },
+      }
+    }
+  },
+  devServer:{
+    proxy:{
+      "/api":{
+        target: target,
+        changeOrigin: true,
+        ws:true,
       }
     }
   }
